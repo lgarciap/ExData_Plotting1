@@ -12,8 +12,11 @@ datetime<-strptime(paste(feb2daysdata$Date,feb2daysdata$Time, sep=" "), format="
 feb2daysdata<-cbind(feb2daysdata,datetime)
 #Changing language to English
 Sys.setlocale("LC_TIME", "English")
-#Make plot #2
-plot(feb2daysdata$Global_active_power~feb2daysdata$datetime, type="l", xlab="", ylab="Global Active Power (kilowatts)")
-#Copy to a png file
-dev.copy(png, file="plot2.png")
+png("plot3.png")
+#Make plot #3
+plot(feb2daysdata$datetime,feb2daysdata$Sub_metering_1, type="l", ylab="Energy sub metering", xlab="")
+lines(feb2daysdata$datetime,feb2daysdata$Sub_metering_2, col="red")
+lines(feb2daysdata$datetime,feb2daysdata$Sub_metering_3, col="blue")
+legend("topright", legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"), col=c("black","red","blue"), lty = 1)
+#closing png file
 dev.off()
